@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 const Section3 = () => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');

@@ -1,41 +1,107 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'; 
-import Section1 from './Section1';
-import Section2 from './Section2';
-import Section3 from './Section3';
-import '../styles/App.css';
-function App() {
-    return (
-      <Router>
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/form" id="form-link">
-                  Section 1
-                </Link>
-              </li>
-              <li>
-                <Link to="/form-ref" id="form-ref-link">
-                  Section 2
-                </Link>
-              </li>
-              <li>
-                <Link to="/form-state" id="form-state-link">
-                  Section 3
-                </Link>
-              </li>
-            </ul>
-          </nav>
+import React, { useRef ,useState} from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import "../styles/App.css";
+
+const App = () => {
+  return (
+    <Router>
+      <div className="app-container">
+        <h1>Form Handling App</h1>
+        <nav>
+          <Link to="/form" id="form-link">Form</Link>
+          <Link to="/form-ref" id="form-ref-link">Form with useRef</Link>
+          <Link to="/form-state" id="form-state-link">Form with useState</Link>
+        </nav>
+        <Routes>
+          <Route path="/form" element={<Form />} />
+          <Route path="/form-ref" element={<FormRef />} />
+          <Route path="/form-state" element={<FormState />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+};
+
+export default App;
+
+// Form.js
+const Form = () => { 
+  const handleSubmit = (e) => {
+  e.preventDefault();
+  console.log("Submitted:");
+};
+  return (
+    <div className="card">
+      <h2>Basic Form</h2>
+      <form id="info-form" onSubmit={handleSubmit}>
+        <input id="full_name" type="text" placeholder="Full Name" />
+        <input id="email" type="email" placeholder="Email" />
+        <input id="password" type="password" placeholder="Password" />
+        <input id="password_confirmation" type="password" placeholder="Confirm Password" />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+};
+
+// FormRef.js
+
+const FormRef = () => {
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const confirmPasswordRef = useRef(null);
   
-          <Routes>
-            <Route path="/form" element={<Section1 />} />
-            <Route path="/form-ref" element={<Section2 />} />
-            <Route path="/form-state" element={<Section3 />} />
-          </Routes>
-        </div>
-      </Router>
-    );
-  }
-  
-  export default App;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Submitted:", nameRef.current.value, emailRef.current.value);
+  };
+
+  return (
+    <div className="card">
+      <h2>Form with useRef</h2>
+      <form id="info-form" onSubmit={handleSubmit}>
+        <input ref={nameRef} id="full_name" type="text" placeholder="Full Name" />
+        <input ref={emailRef} id="email" type="email" placeholder="Email" />
+        <input ref={passwordRef} id="password" type="password" placeholder="Password" />
+        <input ref={confirmPasswordRef} id="password_confirmation" type="password" placeholder="Confirm Password" />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+};
+
+// FormState.js
+const FormState = () => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Submitted", formData);
+  };
+
+  return (
+    <div className="card">
+      <h2>Form with useState</h2>
+      <form id="info-form" onSubmit={handleSubmit}>
+        <input name="fullName" id="full_name" type="text" placeholder="Full Name" onChange={handleChange} />
+        <input name="email" id="email" type="email" placeholder="Email" onChange={handleChange} />
+        <input name="password" id="password" type="password" placeholder="Password" onChange={handleChange} />
+        <input name="confirmPassword" id="password_confirmation" type="password" placeholder="Confirm Password" onChange={handleChange} />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+};
+
+
+

@@ -1,33 +1,12 @@
+h1 {
+    color: #27aedb;
+    text-align: center;
+    }
+    
 
-.card {
-  border: 1px solid #ddd;
-  padding: 20px;
-  margin: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-input {
-  display: block;
-  margin: 10px 0;
-  padding: 8px;
-  width: 100%;
-  border: 1px solid #ccc;
-}
-
-input:focus {
-  border: 2px solid red;
-  outline: none;
-}
-
-button {
-  background-color: blue;
-  color: white;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: darkblue;
+button{
+    color: #27aedb;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }

@@ -14,7 +14,7 @@ const Section2 = () => {
     return (
       <div className="card">
         <h2>Form with useRef</h2>
-        <form id="info-form" onSubmit={handleSubmit}>
+        <form id="form-ref-link" onSubmit={handleSubmit}>
           <input ref={nameRef} id="full_name" type="text" placeholder="Full Name" />
           <input ref={emailRef} id="email" type="email" placeholder="Email" />
           <input ref={passwordRef} id="password" type="password" placeholder="Password" />

@@ -20,7 +20,7 @@ const Section3 = () => {
       return (
         <div className="card">
           <h2>Form with useState</h2>
-          <form id="info-form" onSubmit={handleSubmit}>
+          <form id="form-state-link" onSubmit={handleSubmit}>
             <input name="fullName" id="full_name" type="text" placeholder="Full Name" onChange={handleChange} />
             <input name="email" id="email" type="email" placeholder="Email" onChange={handleChange} />
             <input name="password" id="password" type="password" placeholder="Password" onChange={handleChange} />
